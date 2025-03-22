@@ -1,3 +1,15 @@
+#### this data block creates iam policy which allow assume role policy to service account which we create later 
+#### creates an IAM policy document that allows the Kubernetes Cluster Autoscaler, running as the system:serviceaccount:kube-system:cluster-autoscaler service account, to assume an IAM role using the web identity tokens provided by the EKS cluster's OIDC provider. 
+#### This is essential for the Cluster Autoscaler to interact with AWS resources (like EC2 instances) to scale your EKS cluster.
+
+ #### policy = jsonencode(  copy-paste here Full Cluster Autoscaler Features Policy (Recommended) from link---https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/aws/README.md
+ #### so below policy we get from above link no need to copy by ursellf just copy code this github repo
+
+
+
+
+
+
 data "aws_iam_policy_document" "eks_cluster_autoscaler_assume_role_policy" {
   statement {
     actions = ["sts:AssumeRoleWithWebIdentity"]
@@ -50,3 +62,6 @@ resource "aws_iam_role_policy_attachment" "eks_cluster_autoscaler_attach" {
 output "eks_cluster_autoscaler_arn" {
   value = aws_iam_role.eks_cluster_autoscaler.arn
 }
+
+
+
