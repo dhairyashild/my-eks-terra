@@ -24,8 +24,8 @@ resource "aws_iam_role" "eks_cluster_autoscaler" {
 resource "aws_iam_policy" "eks_cluster_autoscaler" {
   name = "eks-cluster-autoscaler"
 
-  policy = jsonencode({
-    Statement = [{
+  policy = jsonencode({       #### policy = jsonencode(  copy-paste here Full Cluster Autoscaler Features Policy (Recommended) from link---https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/aws/README.md
+    Statement = [{            #### so below policy we get from above link no need to copy by ursellf just copy code this github repo
       Action = [
                 "autoscaling:DescribeAutoScalingGroups",
                 "autoscaling:DescribeAutoScalingInstances",
